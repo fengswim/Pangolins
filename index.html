@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pangolins.cc - FaiKin (辉健) 品牌实验室</title>
+    <style>
+        :root {
+            --bg-color: #121212; /* 深矿石色背景 */
+            --text-color: #e0e0e0; /* 浅灰文字 */
+            --accent-color: #d4af37; /* 金属金 (辉) */
+            --accent-hover: #b8962f;
+            --sketch-line: #444; /* 草图线条色 */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, var(--text-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #888;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .logo-sketch-container {
+            margin-bottom: 60px;
+            position: relative;
+            padding: 20px;
+            border: 1px dashed var(--sketch-line); /* 模拟设计草图虚线框架 */
+            display: inline-block;
+        }
+
+        /* 这是一个模拟的穿山甲草图效果，你替换图片后可以删除这段 */
+        .mock-sketch {
+            width: 300px;
+            height: 180px;
+            border: 2px solid var(--sketch-line);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--sketch-line);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        .mock-sketch::after {
+            content: 'Pangolin Shield [FaiKin] CONCEPT';
+            font-size: 10px;
+            position: absolute;
+            bottom: -20px;
+            color: var(--sketch-line);
+        }
+
+        /* 实际替换图片用的样式 */
+        .logo-sketch-img {
+            max-width: 300px;
+            height: auto;
+            filter: grayscale(100%) contrast(120%); /* 强化草图感 */
+            display: none; /* 默认隐藏，有图片后再开启 */
+        }
+
+        main p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .coming-soon {
+            margin-bottom: 60px;
+        }
+
+        .coming-soon-tag {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        input[type="email"] {
+            background-color: transparent;
+            border: 1px solid var(--sketch-line);
+            color: var(--text-color);
+            padding: 12px 20px;
+            border-radius: 25px;
+            width: 60%;
+            max-width: 300px;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button.subscribe {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button.subscribe:hover {
+            background-color: var(--accent-hover);
+        }
+
+        footer {
+            margin-top: 80px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pangolins<span style="color:var(--accent-color)">.cc</span></h1>
+            <div class="subtitle">FaiKin (辉健) 品牌实验室</div>
+        </header>
+
+        <div class="logo-sketch-container">
+            <div class="mock-sketch">Sketch [v1.0]</div>
+            </div>
+
+        <main>
+            <div class="coming-soon">
+                <span class="coming-soon-tag">Coming 2026</span>
+            </div>
+            <p>
+                穿山甲，自然的铠甲。辉健，内在的力量。<br>
+                我们将坚韧与灵动结合，探索下一代运动装备。
+            </p>
+        </main>
+
+        <div class="cta-section">
+            <input type="email" placeholder="输入邮箱，获取第一手咨询">
+            <button class="subscribe">通知我</button>
+        </div>
+
+        <footer>
+            &copy; 2026 Pangolins.cc / FaiKin (辉健). All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
