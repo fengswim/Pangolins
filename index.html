@@ -10,7 +10,7 @@
             --text-color: #e0e0e0; /* 浅灰文字 */
             --accent-color: #d4af37; /* 金属金 (辉) */
             --accent-hover: #b8962f;
-            --sketch-line: #444; /* 草图线条色 */
+            --sketch-line: #333; 
         }
 
         body {
@@ -31,7 +31,7 @@
         }
 
         header {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         h1 {
@@ -51,43 +51,25 @@
             letter-spacing: 1px;
         }
 
-        .logo-sketch-container {
-            margin-bottom: 60px;
-            position: relative;
-            padding: 20px;
-            border: 1px dashed var(--sketch-line); /* 模拟设计草图虚线框架 */
-            display: inline-block;
-        }
-
-        /* 这是一个模拟的穿山甲草图效果，你替换图片后可以删除这段 */
-        .mock-sketch {
-            width: 300px;
-            height: 180px;
-            border: 2px solid var(--sketch-line);
-            border-radius: 10px;
+        .logo-container {
+            margin-bottom: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--sketch-line);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-        }
-        .mock-sketch::after {
-            content: 'Pangolin Shield [FaiKin] CONCEPT';
-            font-size: 10px;
-            position: absolute;
-            bottom: -20px;
-            color: var(--sketch-line);
         }
 
-        /* 实际替换图片用的样式 */
-        .logo-sketch-img {
-            max-width: 300px;
+        /* Logo 图片样式 */
+        .brand-logo {
+            max-width: 280px; /* 调整 Logo 大小 */
             height: auto;
-            filter: grayscale(100%) contrast(120%); /* 强化草图感 */
-            display: none; /* 默认隐藏，有图片后再开启 */
+            border-radius: 12px;
+            /* 稍微加一点发光效果，呼应“辉” */
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
         }
 
         main p {
@@ -98,21 +80,23 @@
         }
 
         .coming-soon {
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .coming-soon-tag {
             background-color: var(--accent-color);
             color: #fff;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 8px 25px;
+            border-radius: 25px;
             font-weight: bold;
             letter-spacing: 1px;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            text-decoration: none;
         }
 
         .cta-section {
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         input[type="email"] {
@@ -122,8 +106,8 @@
             padding: 12px 20px;
             border-radius: 25px;
             width: 60%;
-            max-width: 300px;
-            margin-right: 10px;
+            max-width: 280px;
+            margin-bottom: 15px;
             transition: border-color 0.3s;
         }
 
@@ -133,24 +117,26 @@
         }
 
         button.subscribe {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
+            background-color: #222;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 12px 30px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         button.subscribe:hover {
-            background-color: var(--accent-hover);
+            background-color: var(--accent-color);
+            color: #fff;
         }
 
         footer {
-            margin-top: 80px;
-            font-size: 0.9em;
-            color: #666;
+            margin-top: 60px;
+            font-size: 0.85em;
+            color: #555;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -161,9 +147,9 @@
             <div class="subtitle">FaiKin (辉健) 品牌实验室</div>
         </header>
 
-        <div class="logo-sketch-container">
-            <div class="mock-sketch">Sketch [v1.0]</div>
-            </div>
+        <div class="logo-container">
+            <img src="logo.png" alt="FaiKin Pangolin Logo" class="brand-logo">
+        </div>
 
         <main>
             <div class="coming-soon">
@@ -176,7 +162,8 @@
         </main>
 
         <div class="cta-section">
-            <input type="email" placeholder="输入邮箱，获取第一手咨询">
+            <input type="email" placeholder="输入邮箱获取最新动态">
+            <br>
             <button class="subscribe">通知我</button>
         </div>
 
