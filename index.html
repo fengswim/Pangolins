@@ -3,261 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangolins.cc - 全球穿山甲保育科普教育平台 | World Pangolin Education Platform</title>
+    <title>Pangolins.cc - 全球穿山甲科普教育平台 | Global Pangolin Education</title>
     <style>
         :root {
-            --primary-green: #2e7d32; /* 自然綠 */
-            --earth-brown: #5d4037; /* 大地棕 */
-            --bg-color: #0a0c0a; /* 深森林黑 */
+            --primary-green: #2e7d32;
+            --bg-color: #0a0c0a;
+            --card-bg: rgba(22, 27, 22, 0.9);
             --text-color: #e0e0e0;
-            --card-bg: rgba(22, 27, 22, 0.9); /* 半透明卡片 */
         }
 
         body {
-            font-family: 'PingFang HK', 'Microsoft JhengHei', 'Helvetica Neue', sans-serif;
+            font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;
+            background: var(--bg-color) url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text-color);
             margin: 0;
             line-height: 1.8;
-            /* 沉浸式背景：深森林/泥土紋理 */
-            background-color: var(--bg-color);
-            background-image: 
-                linear-gradient(rgba(10, 12, 10, 0.9), rgba(10, 12, 10, 0.95)),
-                url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=2000&auto=format&fit=crop'); /* 替換為真實森林地面纹理圖 */
-            background-size: cover;
-            background-attachment: fixed;
         }
 
-        /* 頂部導航 */
-        nav {
-            background-color: var(--primary-green);
+        /* 語言切換器樣式 */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary-green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .lang-switcher select {
+            background: transparent;
             color: white;
-            padding: 15px 20px;
-            text-align: center;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            letter-spacing: 1px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
         }
 
-        /* 主視覺區 */
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background-color: rgba(10, 12, 10, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        nav { background: var(--primary-green); color: white; padding: 15px; text-align: center; font-weight: bold; }
+
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+
+        section { 
+            background: var(--card-bg); 
+            padding: 35px; 
+            margin-bottom: 25px; 
+            border-radius: 15px; 
+            border: 1px solid #333;
+            transition: opacity 0.3s;
         }
 
-        h1 { color: #fff; margin: 0; font-size: 3em; font-weight: 300; letter-spacing: 4px; }
-        .subtitle { color: var(--primary-green); font-size: 1.3em; margin-top: 10px; font-weight: bold;}
-        .subtitle-en { color: #fff; font-size: 0.9em; opacity: 0.8; margin-top: 5px; font-weight: 300; }
+        h1 { text-align: center; color: #fff; font-size: 2.5em; margin-top: 50px; }
+        h2 { color: var(--primary-green); border-bottom: 1px solid #333; padding-bottom: 10px; }
 
-        /* 內容區 */
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        section {
-            background-color: var(--card-bg);
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-            border: 1px solid #222;
-        }
-
-        h2 { 
-            color: var(--primary-green); 
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-weight: 400;
-        }
-
-        h2 .lang-zh { font-size: 1.1em; }
-        h2 .lang-en { font-size: 0.7em; color: #aaa; font-weight: 300; }
-
-        h2::before { content: "🍃"; margin-right: 15px; }
-
-        p { margin-bottom: 25px; color: #ccc; }
-
-        .dual-lang { display: flex; flex-direction: column; gap: 5px; }
-        .dual-lang-zh { color: #fff; }
-        .dual-lang-en { color: #aaa; font-size: 0.9em; font-weight: 300; }
-
-        /* 成長時間軸 */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-top: 30px;
-        }
+        /* 隱藏非當前語言內容 */
+        [data-lang] { display: none; }
+        .active-lang { display: block; }
 
         .timeline-item {
             display: grid;
-            grid-template-columns: 150px 1fr;
+            grid-template-columns: 120px 1fr;
             gap: 20px;
-            align-items: center;
-            background: #111;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-
-        .timeline-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-green);
-        }
-
-        .timeline-content { display: flex; flex-direction: column; gap: 5px; }
-        .timeline-title-zh { color: #fff; font-weight: bold; }
-        .timeline-title-en { color: #aaa; font-size: 0.85em; font-weight: 300;}
-
-        /* 特性網格 */
-        .fact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .fact-item {
-            background: #1e241e;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-
-        .fact-item:hover { transform: translateY(-5px); border-color: var(--primary-green); }
-
-        .icon-box {
-            text-align: center;
-            padding: 20px;
-            background: #1e241e;
+            background: rgba(0,0,0,0.3);
+            margin: 15px 0;
+            padding: 15px;
             border-radius: 10px;
         }
 
-        .icon-box span { font-size: 40px; display: block; margin-bottom: 10px; }
+        .timeline-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-green); }
 
-        /* 廣告預留位樣式 */
         .ad-placeholder {
-            margin: 40px 0;
-            background-color: rgba(20, 20, 20, 0.8);
-            border: 1px dashed #444;
-            padding: 25px;
+            margin: 30px 0;
+            background: rgba(40,40,40,0.5);
+            border: 1px dashed #555;
+            padding: 20px;
             text-align: center;
-            color: #666;
+            color: #777;
             font-size: 0.8em;
             border-radius: 10px;
-            letter-spacing: 1px;
         }
 
-        /* 底部 */
-        footer {
-            background-color: rgba(10, 12, 10, 0.9);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            font-size: 0.9em;
-            border-top: 1px solid #333;
-        }
-
+        footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.8); border-top: 1px solid #333; }
         footer a { color: var(--primary-green); text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <nav>Pangolins.cc | 科普教育 | Conservation Education</nav>
-
-    <div class="hero">
-        <h1>認識大自然的守護者</h1>
-        <p class="subtitle subtitle-zh">專為全球兒童設計的穿山甲學習百科</p>
-        <p class="subtitle subtitle-en">World Pangolin Encyclopedia for Kids</p>
+    <div class="lang-switcher">
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="zh">繁體中文 (HK/TW)</option>
+            <option value="en">English</option>
+        </select>
     </div>
+
+    <nav>Pangolins.cc | <span data-lang="zh">科普教育</span><span data-lang="en">Conservation Education</span></nav>
 
     <div class="container">
         
+        <header style="text-align: center; margin-bottom: 50px;">
+            <h1>Pangolins.cc</h1>
+            <p style="color: var(--primary-green); font-size: 1.2em;">
+                <span data-lang="zh">專為全球兒童設計的穿山甲學習百科</span>
+                <span data-lang="en">World Pangolin Encyclopedia for Kids</span>
+            </p>
+        </header>
+
         <section>
             <h2>
-                <span class="lang-zh">什麼是穿山甲？</span>
-                <span class="lang-en">What is a Pangolin?</span>
+                <span data-lang="zh">什麼是穿山甲？</span>
+                <span data-lang="en">What is a Pangolin?</span>
             </h2>
-            <div class="dual-lang">
-                <p class="dual-lang-zh">穿山甲是地球上唯一擁有「鱗片」的哺乳動物。牠們分布在非洲和亞洲，全世界共有八個品種。牠們就像森林裡的和平小士兵，身體覆蓋著由角質（跟我們的指甲成分一樣）組成的堅硬鱗片。</p>
-                <p class="dual-lang-en">Pangolins are the only mammals on Earth with large keratin scales. There are eight species found in Africa and Asia. They are like peaceful forest soldiers, covered in tough scales made of keratin, the same material as our fingernails.</p>
+            <div data-lang="zh">
+                <p>穿山甲是地球上唯一擁有「鱗片」的哺乳動物。牠們就像森林裡的和平小士兵，身體覆蓋著由角質（跟我們的指甲成分一樣）組成的堅硬鱗片。</p>
+            </div>
+            <div data-lang="en">
+                <p>Pangolins are the only mammals on Earth with large keratin scales. They are like peaceful forest soldiers, covered in tough scales made of the same material as our fingernails.</p>
             </div>
         </section>
 
-        <div class="ad-placeholder">贊助商內容 / 公益廣告預留區 (Public Interest Advertisements)</div>
+        <div class="ad-placeholder">ADVERTISEMENT / 公益廣告位置</div>
 
         <section>
             <h2>
-                <span class="lang-zh">成長之旅 (從初生到成年)</span>
-                <span class="lang-en">Growth Journey (From Birth to Adult)</span>
+                <span data-lang="zh">成長之旅</span>
+                <span data-lang="en">The Life Cycle</span>
             </h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <img src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=600&auto=format&fit=crop" alt="Pangolin pup" class="timeline-img">
-                    <div class="timeline-content">
-                        <p class="timeline-title-zh">🐣 初生幼崽 (Newborn Pup)</p>
-                        <p class="timeline-title-en">初生時鱗片是柔軟的，會騎在媽媽的尾巴上。</p>
-                        <p class="timeline-title-en">Born with soft scales and rides on mother's tail.</p>
-                    </div>
+            
+            <div class="timeline-item">
+                <img src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=200&auto=format" class="timeline-img">
+                <div>
+                    <strong data-lang="zh">初生幼崽 (Newborn)</strong>
+                    <strong data-lang="en">Newborn Pup</strong>
+                    <p data-lang="zh">鱗片是柔軟的，會騎在媽媽的尾巴上旅行。</p>
+                    <p data-lang="en">Born with soft scales and hitches a ride on mother's tail.</p>
                 </div>
-
-                <div class="timeline-item">
-                    <img src="https://images.unsplash.com/photo-1587570499252-094e9f310f8a?q=80&w=600&auto=format&fit=crop" alt="Juvenile Pangolin" class="timeline-img">
-                    <div class="timeline-content">
-                        <p class="timeline-title-zh">🌿 少年時期 (Juvenile)</p>
-                        <p class="timeline-title-en">鱗片逐漸變硬，開始學習挖洞和覓食。</p>
-                        <p class="timeline-title-en">Scales harden, starts learning to burrow and forage.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <img src="https://images.unsplash.com/photo-1591826729269-acdd344d49c8?q=80&w=600&auto=format&fit=crop" alt="Adult Pangolin" class="timeline-img">
-                    <div class="timeline-content">
-                        <p class="timeline-title-zh">🛡️ 成年鎧甲精靈 (Adult)</p>
-                        <p class="timeline-title-en">擁有強大的鎧甲和長舌頭，是獨立的森林精靈。</p>
-                        <p class="timeline-title-en">Equipped with strong armor and long tongue, an independent forest sprite.</p>
-                    </div>
-                </div>
-
             </div>
-        </section>
 
-        <section>
-            <h2>
-                <span class="lang-zh">神奇的生物習性</span>
-                <span class="lang-en">Amazing Facts</span>
-            </h2>
-            <div class="fact-grid">
-                <div class="fact-item icon-box">
-                    <span>🏰</span>
-                    <strong>🏰 挖洞大師 (Burrowing Expert)</strong>
-                    <p class="dual-lang-en">牠們強壯的前爪能挖開地表，為森林翻鬆土壤。</p>
-                    <p class="dual-lang-en">Strong front claws burrow, churning soil for forest health.</p>
-                </div>
-                <div class="fact-item icon-box">
-                    <span>🐜</span>
-                    <strong>🐜 森林清道夫 (Forest Scavenger)</strong>
-                    <p class="dual-lang-en">一隻每年吃掉 7,000 萬隻白蟻，保護樹木不被破壞。</p>
-                    <p class="dual-lang-en">Eats 70 million termites yearly, protecting trees.</p>
-                </div>
-                <div class="fact-item icon-box">
-                    <span>🌀</span>
-                    <strong>🌀 防禦姿態 (Defense Stance)</strong>
-                    <p class="dual-lang-en">遇到危險時，縮成一個球，保護柔軟的肚子。</p>
-                    <p class="dual-lang-en">Rolls into a ball when threatened, protecting its soft belly.</p>
+            <div class="timeline-item">
+                <img src="https://images.unsplash.com/photo-1591826729269-acdd344d49c8?q=80&w=200&auto=format" class="timeline-img">
+                <div>
+                    <strong data-lang="zh">成年鎧甲精靈 (Adult)</strong>
+                    <strong data-lang="en">Adult Pangolin</strong>
+                    <p data-lang="zh">擁有堅硬的鎧甲，可以獨立保護森林。</p>
+                    <p data-lang="en">Equipped with hard armor to protect the forest independently.</p>
                 </div>
             </div>
         </section>
@@ -265,10 +155,40 @@
     </div>
 
     <footer>
-        <p>本網站為純公益教育項目 | This is a Non-Profit Education Project.</p>
-        <p>聯絡與資料提供：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
-        <div style="margin-top: 20px; opacity: 0.5;">&copy; 2026 Pangolins.cc Conservation Project</div>
+        <p data-lang="zh">本網站為純公益教育項目 | 聯絡：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
+        <p data-lang="en">Non-Profit Education Project | Contact: <a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
+        <div style="margin-top: 15px; opacity: 0.5;">&copy; 2026 Pangolins.cc Project</div>
     </footer>
 
+    <script>
+        function setLanguage(lang) {
+            // 隱藏所有語言內容
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active-lang');
+            });
+            // 顯示選擇的語言內容
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+                el.classList.add('active-lang');
+            });
+            // 更新下拉選單
+            document.getElementById('languageSelect').value = lang;
+            // 儲存選擇
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        function changeLanguage(lang) {
+            setLanguage(lang);
+        }
+
+        // 初始化偵測
+        window.onload = function() {
+            const savedLang = localStorage.getItem('preferredLang');
+            const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+            
+            // 優先順序：儲存的選擇 > 瀏覽器語言 > 預設英文
+            const finalLang = savedLang || browserLang || 'en';
+            setLanguage(finalLang);
+        };
+    </script>
 </body>
 </html>
