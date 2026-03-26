@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangolins.cc - 穿山甲全球科普教育平台</title>
+    <title>Pangolins.cc - 全球穿山甲保育科普教育平台 | World Pangolin Education Platform</title>
     <style>
         :root {
             --primary-green: #2e7d32; /* 自然綠 */
             --earth-brown: #5d4037; /* 大地棕 */
-            --bg-light: #f9fbf9;
-            --text-main: #333;
+            --bg-color: #0a0c0a; /* 深森林黑 */
+            --text-color: #e0e0e0;
+            --card-bg: rgba(22, 27, 22, 0.9); /* 半透明卡片 */
         }
 
         body {
-            font-family: 'PingFang HK', 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            font-family: 'PingFang HK', 'Microsoft JhengHei', 'Helvetica Neue', sans-serif;
+            color: var(--text-color);
             margin: 0;
             line-height: 1.8;
+            /* 沉浸式背景：深森林/泥土紋理 */
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(10, 12, 10, 0.9), rgba(10, 12, 10, 0.95)),
+                url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=2000&auto=format&fit=crop'); /* 替換為真實森林地面纹理圖 */
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         /* 頂部導航 */
@@ -28,128 +35,239 @@
             text-align: center;
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
         }
 
         /* 主視覺區 */
         .hero {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            background-color: #e8f5e9;
+            background-color: rgba(10, 12, 10, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1 { color: var(--earth-brown); margin: 0; font-size: 2.5em; }
-        .subtitle { color: var(--primary-green); font-size: 1.2em; }
+        h1 { color: #fff; margin: 0; font-size: 3em; font-weight: 300; letter-spacing: 4px; }
+        .subtitle { color: var(--primary-green); font-size: 1.3em; margin-top: 10px; font-weight: bold;}
+        .subtitle-en { color: #fff; font-size: 0.9em; opacity: 0.8; margin-top: 5px; font-weight: 300; }
 
         /* 內容區 */
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
         section {
-            background: white;
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background-color: var(--card-bg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            border: 1px solid #222;
         }
 
         h2 { 
             color: var(--primary-green); 
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            font-weight: 400;
         }
 
-        h2::before { content: "🍃"; margin-right: 10px; }
+        h2 .lang-zh { font-size: 1.1em; }
+        h2 .lang-en { font-size: 0.7em; color: #aaa; font-weight: 300; }
 
+        h2::before { content: "🍃"; margin-right: 15px; }
+
+        p { margin-bottom: 25px; color: #ccc; }
+
+        .dual-lang { display: flex; flex-direction: column; gap: 5px; }
+        .dual-lang-zh { color: #fff; }
+        .dual-lang-en { color: #aaa; font-size: 0.9em; font-weight: 300; }
+
+        /* 成長時間軸 */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 20px;
+            align-items: center;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .timeline-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-green);
+        }
+
+        .timeline-content { display: flex; flex-direction: column; gap: 5px; }
+        .timeline-title-zh { color: #fff; font-weight: bold; }
+        .timeline-title-en { color: #aaa; font-size: 0.85em; font-weight: 300;}
+
+        /* 特性網格 */
         .fact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .fact-item {
-            background: #f1f8e9;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.95em;
+            background: #1e241e;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
         }
+
+        .fact-item:hover { transform: translateY(-5px); border-color: var(--primary-green); }
+
+        .icon-box {
+            text-align: center;
+            padding: 20px;
+            background: #1e241e;
+            border-radius: 10px;
+        }
+
+        .icon-box span { font-size: 40px; display: block; margin-bottom: 10px; }
 
         /* 廣告預留位樣式 */
         .ad-placeholder {
             margin: 40px 0;
-            background: #f0f0f0;
-            border: 1px dashed #ccc;
-            padding: 20px;
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px dashed #444;
+            padding: 25px;
             text-align: center;
-            color: #999;
+            color: #666;
             font-size: 0.8em;
-            border-radius: 8px;
+            border-radius: 10px;
+            letter-spacing: 1px;
         }
 
         /* 底部 */
         footer {
-            background: var(--earth-brown);
+            background-color: rgba(10, 12, 10, 0.9);
             color: white;
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
             font-size: 0.9em;
+            border-top: 1px solid #333;
         }
 
-        footer a { color: #ffccbc; text-decoration: none; }
+        footer a { color: var(--primary-green); text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <nav>Pangolins.cc | 全球穿山甲保育知識庫</nav>
+    <nav>Pangolins.cc | 科普教育 | Conservation Education</nav>
 
     <div class="hero">
         <h1>認識大自然的守護者</h1>
-        <p class="subtitle">專為全球兒童設計的穿山甲學習百科</p>
+        <p class="subtitle subtitle-zh">專為全球兒童設計的穿山甲學習百科</p>
+        <p class="subtitle subtitle-en">World Pangolin Encyclopedia for Kids</p>
     </div>
 
     <div class="container">
         
         <section>
-            <h2>什麼是穿山甲？ (What is a Pangolin?)</h2>
-            <p>穿山甲是地球上唯一擁有「鱗片」的哺乳動物。牠們分布在非洲和亞洲，全世界共有八個品種。牠們就像森林裡的和平小士兵，身上覆蓋著由角質（跟我們的指甲成分一樣）組成的堅硬鱗片。</p>
+            <h2>
+                <span class="lang-zh">什麼是穿山甲？</span>
+                <span class="lang-en">What is a Pangolin?</span>
+            </h2>
+            <div class="dual-lang">
+                <p class="dual-lang-zh">穿山甲是地球上唯一擁有「鱗片」的哺乳動物。牠們分布在非洲和亞洲，全世界共有八個品種。牠們就像森林裡的和平小士兵，身體覆蓋著由角質（跟我們的指甲成分一樣）組成的堅硬鱗片。</p>
+                <p class="dual-lang-en">Pangolins are the only mammals on Earth with large keratin scales. There are eight species found in Africa and Asia. They are like peaceful forest soldiers, covered in tough scales made of keratin, the same material as our fingernails.</p>
+            </div>
         </section>
 
-        <div class="ad-placeholder">贊助商內容預留區 (Public Interest Advertisements)</div>
+        <div class="ad-placeholder">贊助商內容 / 公益廣告預留區 (Public Interest Advertisements)</div>
 
         <section>
-            <h2>神奇的生物習性</h2>
-            <div class="fact-grid">
-                <div class="fact-item">
-                    <strong>🏰 挖洞大師</strong><br>
-                    牠們強壯的前爪能挖開比水泥還硬的地表，為森林翻鬆土壤，讓植物長得更好。
+            <h2>
+                <span class="lang-zh">成長之旅 (從初生到成年)</span>
+                <span class="lang-en">Growth Journey (From Birth to Adult)</span>
+            </h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <img src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=600&auto=format&fit=crop" alt="Pangolin pup" class="timeline-img">
+                    <div class="timeline-content">
+                        <p class="timeline-title-zh">🐣 初生幼崽 (Newborn Pup)</p>
+                        <p class="timeline-title-en">初生時鱗片是柔軟的，會騎在媽媽的尾巴上。</p>
+                        <p class="timeline-title-en">Born with soft scales and rides on mother's tail.</p>
+                    </div>
                 </div>
-                <div class="fact-item">
-                    <strong>🐜 森林清道夫</strong><br>
-                    一隻穿山甲每年可以吃掉超過 7,000 萬隻螞蟻和白蟻，保護樹木不被白蟻破壞。
+
+                <div class="timeline-item">
+                    <img src="https://images.unsplash.com/photo-1587570499252-094e9f310f8a?q=80&w=600&auto=format&fit=crop" alt="Juvenile Pangolin" class="timeline-img">
+                    <div class="timeline-content">
+                        <p class="timeline-title-zh">🌿 少年時期 (Juvenile)</p>
+                        <p class="timeline-title-en">鱗片逐漸變硬，開始學習挖洞和覓食。</p>
+                        <p class="timeline-title-en">Scales harden, starts learning to burrow and forage.</p>
+                    </div>
                 </div>
-                <div class="fact-item">
-                    <strong>🌀 防禦姿態</strong><br>
-                    遇到危險時，牠們會縮成一個球。這個姿勢能保護牠們柔軟的肚子，連獅子都沒辦法咬開。
+
+                <div class="timeline-item">
+                    <img src="https://images.unsplash.com/photo-1591826729269-acdd344d49c8?q=80&w=600&auto=format&fit=crop" alt="Adult Pangolin" class="timeline-img">
+                    <div class="timeline-content">
+                        <p class="timeline-title-zh">🛡️ 成年鎧甲精靈 (Adult)</p>
+                        <p class="timeline-title-en">擁有強大的鎧甲和長舌頭，是獨立的森林精靈。</p>
+                        <p class="timeline-title-en">Equipped with strong armor and long tongue, an independent forest sprite.</p>
+                    </div>
                 </div>
+
             </div>
         </section>
 
         <section>
-            <h2>保育現狀</h2>
-            <p>由於森林被砍伐和非法捕獵，穿山甲現在非常稀有。每一隻穿山甲對森林生態都非常重要。我們可以從小學習保護自然的知識，告訴身邊的人不要購買任何穿山甲製品。</p>
+            <h2>
+                <span class="lang-zh">神奇的生物習性</span>
+                <span class="lang-en">Amazing Facts</span>
+            </h2>
+            <div class="fact-grid">
+                <div class="fact-item icon-box">
+                    <span>🏰</span>
+                    <strong>🏰 挖洞大師 (Burrowing Expert)</strong>
+                    <p class="dual-lang-en">牠們強壯的前爪能挖開地表，為森林翻鬆土壤。</p>
+                    <p class="dual-lang-en">Strong front claws burrow, churning soil for forest health.</p>
+                </div>
+                <div class="fact-item icon-box">
+                    <span>🐜</span>
+                    <strong>🐜 森林清道夫 (Forest Scavenger)</strong>
+                    <p class="dual-lang-en">一隻每年吃掉 7,000 萬隻白蟻，保護樹木不被破壞。</p>
+                    <p class="dual-lang-en">Eats 70 million termites yearly, protecting trees.</p>
+                </div>
+                <div class="fact-item icon-box">
+                    <span>🌀</span>
+                    <strong>🌀 防禦姿態 (Defense Stance)</strong>
+                    <p class="dual-lang-en">遇到危險時，縮成一個球，保護柔軟的肚子。</p>
+                    <p class="dual-lang-en">Rolls into a ball when threatened, protecting its soft belly.</p>
+                </div>
+            </div>
         </section>
 
     </div>
 
     <footer>
-        <p>本網站為純公益教育項目，旨在推廣野生動物保護意識。</p>
+        <p>本網站為純公益教育項目 | This is a Non-Profit Education Project.</p>
         <p>聯絡與資料提供：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
-        <div style="margin-top: 20px; opacity: 0.6;">&copy; 2026 Pangolins.cc Conservation Project</div>
+        <div style="margin-top: 20px; opacity: 0.5;">&copy; 2026 Pangolins.cc Conservation Project</div>
     </footer>
 
 </body>
