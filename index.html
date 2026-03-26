@@ -3,191 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangolins.cc - 全球穿山甲科普教育平台 | Global Pangolin Education</title>
+    <title>Pangolins.cc - 全球穿山甲百科 | World Pangolin Encyclopedia</title>
     <style>
         :root {
             --primary-green: #2e7d32;
             --bg-color: #0a0c0a;
-            --card-bg: rgba(22, 27, 22, 0.9);
+            --card-bg: rgba(16, 20, 16, 0.95);
             --text-color: #e0e0e0;
         }
 
         body {
             font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;
-            background: var(--bg-color) url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
             color: var(--text-color);
             margin: 0;
             line-height: 1.8;
+            background: var(--bg-color) url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        /* 語言切換器樣式 */
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        /* 導覽與語言切換 */
+        header {
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            background: var(--primary-green);
-            padding: 5px 15px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: rgba(46, 125, 50, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 0.9em;
         }
 
         .lang-switcher select {
-            background: transparent;
+            background: #1b5e20;
             color: white;
-            border: none;
-            font-size: 14px;
-            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 5px 10px;
             outline: none;
         }
 
-        nav { background: var(--primary-green); color: white; padding: 15px; text-align: center; font-weight: bold; }
-
-        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
 
         section { 
             background: var(--card-bg); 
-            padding: 35px; 
-            margin-bottom: 25px; 
-            border-radius: 15px; 
+            padding: 40px; 
+            margin-bottom: 40px; 
+            border-radius: 20px; 
             border: 1px solid #333;
-            transition: opacity 0.3s;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        h1 { text-align: center; color: #fff; font-size: 2.5em; margin-top: 50px; }
-        h2 { color: var(--primary-green); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        h1 { font-size: 3em; letter-spacing: 5px; text-align: center; margin: 60px 0; }
+        h2 { color: var(--primary-green); border-bottom: 2px solid #333; padding-bottom: 10px; margin-top: 0; }
+        h3 { color: #fff; margin-top: 30px; }
 
-        /* 隱藏非當前語言內容 */
         [data-lang] { display: none; }
         .active-lang { display: block; }
 
-        .timeline-item {
+        .species-list {
             display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 20px;
-            background: rgba(0,0,0,0.3);
-            margin: 15px 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .species-item {
+            background: rgba(255,255,255,0.05);
             padding: 15px;
             border-radius: 10px;
+            border-left: 3px solid var(--primary-green);
         }
-
-        .timeline-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-green); }
 
         .ad-placeholder {
-            margin: 30px 0;
-            background: rgba(40,40,40,0.5);
+            margin: 40px 0;
+            background: rgba(30,30,30,0.6);
             border: 1px dashed #555;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
-            color: #777;
+            color: #666;
             font-size: 0.8em;
-            border-radius: 10px;
+            border-radius: 15px;
         }
 
-        footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.8); border-top: 1px solid #333; }
+        footer { text-align: center; padding: 80px 20px; background: rgba(0,0,0,0.9); color: #888; border-top: 1px solid #333; }
         footer a { color: var(--primary-green); text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="lang-switcher">
-        <select id="languageSelect" onchange="changeLanguage(this.value)">
-            <option value="zh">繁體中文 (HK/TW)</option>
-            <option value="en">English</option>
-        </select>
-    </div>
-
-    <nav>Pangolins.cc | <span data-lang="zh">科普教育</span><span data-lang="en">Conservation Education</span></nav>
+    <header>
+        <div class="nav-links">
+            <a href="#intro"><span data-lang="zh">概述</span><span data-lang="en">Intro</span></a>
+            <a href="#species"><span data-lang="zh">物種</span><span data-lang="en">Species</span></a>
+            <a href="#anatomy"><span data-lang="zh">結構</span><span data-lang="en">Anatomy</span></a>
+            <a href="#status"><span data-lang="zh">現狀</span><span data-lang="en">Status</span></a>
+        </div>
+        <div class="lang-switcher">
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="zh">繁體中文 (HK/TW)</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </header>
 
     <div class="container">
         
-        <header style="text-align: center; margin-bottom: 50px;">
-            <h1>Pangolins.cc</h1>
-            <p style="color: var(--primary-green); font-size: 1.2em;">
-                <span data-lang="zh">專為全球兒童設計的穿山甲學習百科</span>
-                <span data-lang="en">World Pangolin Encyclopedia for Kids</span>
-            </p>
-        </header>
+        <h1>PANGOLINS<span style="opacity:0.3">.CC</span></h1>
 
-        <section>
+        <section id="intro">
             <h2>
-                <span data-lang="zh">什麼是穿山甲？</span>
-                <span data-lang="en">What is a Pangolin?</span>
+                <span data-lang="zh">科學概述</span>
+                <span data-lang="en">Scientific Overview</span>
             </h2>
             <div data-lang="zh">
-                <p>穿山甲是地球上唯一擁有「鱗片」的哺乳動物。牠們就像森林裡的和平小士兵，身體覆蓋著由角質（跟我們的指甲成分一樣）組成的堅硬鱗片。</p>
+                <p>穿山甲（學名：Pholidota），古稱鯪鯉，是哺乳綱真獸下綱的一個目。其特徵為全身覆蓋著重疊的角質鱗片，這些鱗片佔據其體重的 20%。牠們在演化上是一個非常古老的群體，主要分布於熱帶及亞熱帶地區。</p>
             </div>
             <div data-lang="en">
-                <p>Pangolins are the only mammals on Earth with large keratin scales. They are like peaceful forest soldiers, covered in tough scales made of the same material as our fingernails.</p>
+                <p>Pangolins (Order: Pholidota) are mammals characterized by overlapping scales made of keratin, which account for about 20% of their body weight. They are an ancient evolutionary group found in tropical and subtropical regions of Africa and Asia.</p>
             </div>
         </section>
 
-        <div class="ad-placeholder">ADVERTISEMENT / 公益廣告位置</div>
+        <div class="ad-placeholder">SPONSORED CONTENT / 公益宣傳位</div>
 
-        <section>
+        <section id="species">
             <h2>
-                <span data-lang="zh">成長之旅</span>
-                <span data-lang="en">The Life Cycle</span>
+                <span data-lang="zh">現存的八個物種</span>
+                <span data-lang="en">The Eight Extant Species</span>
             </h2>
-            
-            <div class="timeline-item">
-                <img src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?q=80&w=200&auto=format" class="timeline-img">
-                <div>
-                    <strong data-lang="zh">初生幼崽 (Newborn)</strong>
-                    <strong data-lang="en">Newborn Pup</strong>
-                    <p data-lang="zh">鱗片是柔軟的，會騎在媽媽的尾巴上旅行。</p>
-                    <p data-lang="en">Born with soft scales and hitches a ride on mother's tail.</p>
+            <div class="species-list">
+                <div class="species-item">
+                    <strong data-lang="zh">亞洲區：</strong><strong data-lang="en">Asian Species:</strong>
+                    <ul style="font-size:0.9em; padding-left:20px;">
+                        <li>中華穿山甲 (Chinese)</li>
+                        <li>馬來穿山甲 (Sunda)</li>
+                        <li>印度穿山甲 (Indian)</li>
+                        <li>菲律賓穿山甲 (Philippine)</li>
+                    </ul>
+                </div>
+                <div class="species-item">
+                    <strong data-lang="zh">非洲區：</strong><strong data-lang="en">African Species:</strong>
+                    <ul style="font-size:0.9em; padding-left:20px;">
+                        <li>大穿山甲 (Giant)</li>
+                        <li>南非穿山甲 (Ground)</li>
+                        <li>長尾穿山甲 (Long-tailed)</li>
+                        <li>樹穿山甲 (Tree)</li>
+                    </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="timeline-item">
-                <img src="https://images.unsplash.com/photo-1591826729269-acdd344d49c8?q=80&w=200&auto=format" class="timeline-img">
-                <div>
-                    <strong data-lang="zh">成年鎧甲精靈 (Adult)</strong>
-                    <strong data-lang="en">Adult Pangolin</strong>
-                    <p data-lang="zh">擁有堅硬的鎧甲，可以獨立保護森林。</p>
-                    <p data-lang="en">Equipped with hard armor to protect the forest independently.</p>
-                </div>
+        <section id="anatomy">
+            <h2>
+                <span data-lang="zh">生理與解剖</span>
+                <span data-lang="en">Physiology & Anatomy</span>
+            </h2>
+            <div data-lang="zh">
+                <h3>🛡️ 鱗片結構</h3>
+                <p>穿山甲的鱗片由角質蛋白構成，會隨著成長不斷更新磨損。鱗片邊緣銳利，可用於切傷捕食者的嘴部。</p>
+                <h3>👅 捕食機制</h3>
+                <p>牠們沒有牙齒，但擁有一條長達 40 厘米的舌頭。舌頭的起點甚至連接在骨盆附近，附帶著黏性的唾液，用於捕捉螞蟻。</p>
+                <h3>🐾 強力前爪</h3>
+                <p>前肢中趾發達，長有強壯的利爪，能輕易刨開極為堅硬的蟻冢。</p>
+            </div>
+            <div data-lang="en">
+                <h3>🛡️ Scale Structure</h3>
+                <p>The scales are made of keratin and grow continuously. The sharp edges can slash at the muzzles of predators.</p>
+                <h3>👅 Feeding Mechanism</h3>
+                <p>They lack teeth but possess a tongue up to 40cm long. The tongue is anchored near the pelvis and coated with sticky saliva to capture insects.</p>
+                <h3>🐾 Powerful Claws</h3>
+                <p>Strong, curved claws on their front feet allow them to dig through concrete-like termite mounds.</p>
+            </div>
+        </section>
+
+        <section id="status" style="border-left: 5px solid #d32f2f;">
+            <h2>
+                <span data-lang="zh">保育現狀與威脅</span>
+                <span data-lang="en">Conservation Status</span>
+            </h2>
+            <div data-lang="zh">
+                <p>根據維基百科與 IUCN 的數據，穿山甲是目前**全球非法貿易量最高**的哺乳動物。由於棲息地喪失和非法捕殺，全部 8 個物種均被列入瀕危名單，其中 3 種為「極危」級別。</p>
+            </div>
+            <div data-lang="en">
+                <p>According to Wikipedia and IUCN data, pangolins are the **most trafficked mammals** in the world. Due to habitat loss and poaching, all 8 species are listed as threatened, with 3 species being "Critically Endangered."</p>
             </div>
         </section>
 
     </div>
 
     <footer>
-        <p data-lang="zh">本網站為純公益教育項目 | 聯絡：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
-        <p data-lang="en">Non-Profit Education Project | Contact: <a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
-        <div style="margin-top: 15px; opacity: 0.5;">&copy; 2026 Pangolins.cc Project</div>
+        <p data-lang="zh">資料參考：維基百科 (Wikipedia) | 公益教育項目</p>
+        <p data-lang="en">Data Source: Wikipedia | Non-Profit Project</p>
+        <p>聯絡：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
+        <div style="margin-top: 20px; opacity: 0.3;">&copy; 2026 Pangolins.cc | Protected by Natural Armor</div>
     </footer>
 
     <script>
         function setLanguage(lang) {
-            // 隱藏所有語言內容
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.classList.remove('active-lang');
-            });
-            // 顯示選擇的語言內容
-            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
-                el.classList.add('active-lang');
-            });
-            // 更新下拉選單
+            document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('active-lang'));
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => el.classList.add('active-lang'));
             document.getElementById('languageSelect').value = lang;
-            // 儲存選擇
             localStorage.setItem('preferredLang', lang);
         }
-
-        function changeLanguage(lang) {
-            setLanguage(lang);
-        }
-
-        // 初始化偵測
+        function changeLanguage(lang) { setLanguage(lang); }
         window.onload = function() {
             const savedLang = localStorage.getItem('preferredLang');
             const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
-            
-            // 優先順序：儲存的選擇 > 瀏覽器語言 > 預設英文
-            const finalLang = savedLang || browserLang || 'en';
-            setLanguage(finalLang);
+            setLanguage(savedLang || browserLang || 'en');
         };
     </script>
 </body>
