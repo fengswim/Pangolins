@@ -3,131 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangolins.cc - 全球穿山甲守護計劃</title>
+    <title>Pangolins.cc - 穿山甲全球科普教育平台</title>
     <style>
         :root {
-            --bg-color: #0a0e0a; /* 深森林黑 */
-            --text-color: #e0e0e0;
-            --accent-color: #d4af37; /* 金色鱗片 */
-            --nature-green: #2d5a27;
+            --primary-green: #2e7d32; /* 自然綠 */
+            --earth-brown: #5d4037; /* 大地棕 */
+            --bg-light: #f9fbf9;
+            --text-main: #333;
         }
 
         body {
-            font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'PingFang HK', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* 頂部導航 */
+        nav {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 15px 20px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,14,10,1)), url('logo.png') center/contain no-repeat;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        h1 { font-size: 2.8em; letter-spacing: 3px; color: var(--accent-color); margin-bottom: 0; }
-        .tagline { font-size: 1.2em; color: var(--nature-green); font-weight: bold; }
-
-        .content-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* 主視覺區 */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #e8f5e9;
         }
 
-        .fact-card {
-            background: #161b16;
-            border-left: 4px solid var(--accent-color);
-            padding: 25px;
-            margin-bottom: 30px;
-            border-radius: 0 15px 15px 0;
-            transition: transform 0.3s;
+        h1 { color: var(--earth-brown); margin: 0; font-size: 2.5em; }
+        .subtitle { color: var(--primary-green); font-size: 1.2em; }
+
+        /* 內容區 */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
 
-        .fact-card:hover { transform: translateX(10px); }
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
 
-        h2 { color: var(--accent-color); border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        .fun-fact {
+        h2 { 
+            color: var(--primary-green); 
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before { content: "🍃"; margin-right: 10px; }
+
+        .fact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
 
-        .icon-box {
-            text-align: center;
+        .fact-item {
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        /* 廣告預留位樣式 */
+        .ad-placeholder {
+            margin: 40px 0;
+            background: #f0f0f0;
+            border: 1px dashed #ccc;
             padding: 20px;
-            background: #1e241e;
-            border-radius: 10px;
-        }
-
-        .icon-box span { font-size: 40px; display: block; margin-bottom: 10px; }
-
-        footer {
             text-align: center;
-            padding: 60px 20px;
-            color: #555;
-            font-size: 0.9em;
-            border-top: 1px solid #222;
-        }
-
-        a { color: var(--accent-color); text-decoration: none; }
-    </style>
-</head>
-<body>
-
-    <section class="hero">
-        <h1>PANGOLINS<span style="color:#fff">.CC</span></h1>
-        <p class="tagline">給世界各地小孩的穿山甲百科全書</p>
-    </section>
-
-    <div class="content-section">
-        <div class="fact-card">
-            <h2>🌍 我是誰？ (Who am I?)</h2>
-            <p>我是世界上唯一的「有鱗哺乳動物」。雖然我看起來像恐龍，但我其實和貓、狗一樣是哺乳類動物！我的身體覆蓋著堅硬的角質鱗片，這就是我的守護鎧甲。</p>
-        </div>
-
-        <div class="fact-card">
-            <h2>👅 我的秘密武器 (My Superpowers)</h2>
-            <div class="fun-fact">
-                <div class="icon-box">
-                    <span>👅</span>
-                    <strong>超長舌頭</strong>
-                    <p>我的舌頭甚至比我的身體還要長！我沒有牙齒，全靠這條黏糊糊的舌頭來抓螞蟻。一隻穿山甲一年可以吃掉 7,000 萬隻昆蟲！</p>
-                </div>
-                <div class="icon-box">
-                    <span>🛡️</span>
-                    <strong>捲縮防禦</strong>
-                    <p>當我感到害怕時，我會把自己捲成一個堅硬的球。即使是獅子也咬不穿我的鱗片，我就像一顆會動的自然鎧甲球。</p>
-                </div>
-                <div class="icon-box">
-                    <span>🏠</span>
-                    <strong>地下建築師</strong>
-                    <p>我是挖洞高手。我的前爪非常強壯，能挖出深達數米的洞穴，這不僅是我睡覺的地方，還能幫森林翻鬆土壤。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="fact-card">
-            <h2>💤 我的生活習慣 (My Daily Life)</h2>
-            <p>我是「夜貓子」（夜行性動物）。白天我喜歡在溫暖的洞穴裡睡大覺，等到太陽下山後，我才會出來散步和找好吃的螞蟻。我性格非常害羞，不喜歡吵鬧，是一個和平的森林守護者。</p>
-        </div>
-
-        <div class="fact-card" style="border-left-color: #c0392b;">
-            <h2>❤️ 守護我們的未來</h2>
-            <p>現在穿山甲正面臨很大的生存危機。全世界有 8 種穿山甲，牠們都非常稀有。我們可以透過學習知識、拒絕購買非法鱗片製品，來保護這些大自然的鎧甲精靈。</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>這是一個公益科普項目 | 歡迎聯繫我們參與建設：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
-        &copy; 2026 Pangolins.cc | 守護自然的鎧甲
-    </footer>
-
-</body>
-</html>
+            color: #999;
