@@ -1,176 +1,133 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangolins.cc - FaiKin (辉健) 品牌实验室</title>
+    <title>Pangolins.cc - 全球穿山甲守護計劃</title>
     <style>
         :root {
-            --bg-color: #121212; /* 深矿石色背景 */
-            --text-color: #e0e0e0; /* 浅灰文字 */
-            --accent-color: #d4af37; /* 金属金 (辉) */
-            --accent-hover: #b8962f;
-            --sketch-line: #333; 
+            --bg-color: #0a0e0a; /* 深森林黑 */
+            --text-color: #e0e0e0;
+            --accent-color: #d4af37; /* 金色鱗片 */
+            --nature-green: #2d5a27;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
+            line-height: 1.6;
+        }
+
+        .hero {
+            height: 60vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,14,10,1)), url('logo.png') center/contain no-repeat;
         }
 
-        .container {
-            max-width: 800px;
-            padding: 40px;
+        h1 { font-size: 2.8em; letter-spacing: 3px; color: var(--accent-color); margin-bottom: 0; }
+        .tagline { font-size: 1.2em; color: var(--nature-green); font-weight: bold; }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        header {
-            margin-bottom: 40px;
+        .fact-card {
+            background: #161b16;
+            border-left: 4px solid var(--accent-color);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 0 15px 15px 0;
+            transition: transform 0.3s;
         }
 
-        h1 {
-            font-size: 2.5em;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            background: linear-gradient(to bottom, #fff, var(--text-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .fact-card:hover { transform: translateX(10px); }
+
+        h2 { color: var(--accent-color); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        .fun-fact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .subtitle {
-            font-size: 1.1em;
-            color: #888;
-            font-weight: 400;
-            letter-spacing: 1px;
+        .icon-box {
+            text-align: center;
+            padding: 20px;
+            background: #1e241e;
+            border-radius: 10px;
         }
 
-        .logo-container {
-            margin-bottom: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Logo 图片样式 */
-        .brand-logo {
-            max-width: 280px; /* 调整 Logo 大小 */
-            height: auto;
-            border-radius: 12px;
-            /* 稍微加一点发光效果，呼应“辉” */
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .brand-logo:hover {
-            transform: scale(1.05);
-        }
-
-        main p {
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .coming-soon {
-            margin-bottom: 50px;
-        }
-
-        .coming-soon-tag {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 8px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .cta-section {
-            margin-top: 30px;
-        }
-
-        input[type="email"] {
-            background-color: transparent;
-            border: 1px solid var(--sketch-line);
-            color: var(--text-color);
-            padding: 12px 20px;
-            border-radius: 25px;
-            width: 60%;
-            max-width: 280px;
-            margin-bottom: 15px;
-            transition: border-color 0.3s;
-        }
-
-        input[type="email"]:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        button.subscribe {
-            background-color: #222;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        button.subscribe:hover {
-            background-color: var(--accent-color);
-            color: #fff;
-        }
+        .icon-box span { font-size: 40px; display: block; margin-bottom: 10px; }
 
         footer {
-            margin-top: 60px;
-            font-size: 0.85em;
+            text-align: center;
+            padding: 60px 20px;
             color: #555;
-            letter-spacing: 1px;
+            font-size: 0.9em;
+            border-top: 1px solid #222;
         }
+
+        a { color: var(--accent-color); text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Pangolins<span style="color:var(--accent-color)">.cc</span></h1>
-            <div class="subtitle">FaiKin (辉健) 品牌实验室</div>
-        </header>
 
-        <div class="logo-container">
-            <img src="logo.png" alt="FaiKin Pangolin Logo" class="brand-logo">
+    <section class="hero">
+        <h1>PANGOLINS<span style="color:#fff">.CC</span></h1>
+        <p class="tagline">給世界各地小孩的穿山甲百科全書</p>
+    </section>
+
+    <div class="content-section">
+        <div class="fact-card">
+            <h2>🌍 我是誰？ (Who am I?)</h2>
+            <p>我是世界上唯一的「有鱗哺乳動物」。雖然我看起來像恐龍，但我其實和貓、狗一樣是哺乳類動物！我的身體覆蓋著堅硬的角質鱗片，這就是我的守護鎧甲。</p>
         </div>
 
-        <main>
-            <div class="coming-soon">
-                <span class="coming-soon-tag">Coming 2026</span>
+        <div class="fact-card">
+            <h2>👅 我的秘密武器 (My Superpowers)</h2>
+            <div class="fun-fact">
+                <div class="icon-box">
+                    <span>👅</span>
+                    <strong>超長舌頭</strong>
+                    <p>我的舌頭甚至比我的身體還要長！我沒有牙齒，全靠這條黏糊糊的舌頭來抓螞蟻。一隻穿山甲一年可以吃掉 7,000 萬隻昆蟲！</p>
+                </div>
+                <div class="icon-box">
+                    <span>🛡️</span>
+                    <strong>捲縮防禦</strong>
+                    <p>當我感到害怕時，我會把自己捲成一個堅硬的球。即使是獅子也咬不穿我的鱗片，我就像一顆會動的自然鎧甲球。</p>
+                </div>
+                <div class="icon-box">
+                    <span>🏠</span>
+                    <strong>地下建築師</strong>
+                    <p>我是挖洞高手。我的前爪非常強壯，能挖出深達數米的洞穴，這不僅是我睡覺的地方，還能幫森林翻鬆土壤。</p>
+                </div>
             </div>
-            <p>
-                穿山甲，自然的铠甲。辉健，内在的力量。<br>
-                我们将坚韧与灵动结合，探索下一代运动装备。
-            </p>
-        </main>
-
-        <div class="cta-section">
-            <input type="email" placeholder="输入邮箱获取最新动态">
-            <br>
-            <button class="subscribe">通知我</button>
         </div>
 
-        <footer>
-    <p>聯絡我們：<a href="mailto:hello@pangolins.cc" style="color: var(--accent-color); text-decoration: none;">hello@pangolins.cc</a></p>
-    &copy; 2026 Pangolins.cc / FaiKin (輝健). All rights reserved.
-        </footer>
+        <div class="fact-card">
+            <h2>💤 我的生活習慣 (My Daily Life)</h2>
+            <p>我是「夜貓子」（夜行性動物）。白天我喜歡在溫暖的洞穴裡睡大覺，等到太陽下山後，我才會出來散步和找好吃的螞蟻。我性格非常害羞，不喜歡吵鬧，是一個和平的森林守護者。</p>
+        </div>
+
+        <div class="fact-card" style="border-left-color: #c0392b;">
+            <h2>❤️ 守護我們的未來</h2>
+            <p>現在穿山甲正面臨很大的生存危機。全世界有 8 種穿山甲，牠們都非常稀有。我們可以透過學習知識、拒絕購買非法鱗片製品，來保護這些大自然的鎧甲精靈。</p>
+        </div>
     </div>
+
+    <footer>
+        <p>這是一個公益科普項目 | 歡迎聯繫我們參與建設：<a href="mailto:hello@pangolins.cc">hello@pangolins.cc</a></p>
+        &copy; 2026 Pangolins.cc | 守護自然的鎧甲
+    </footer>
+
 </body>
 </html>
